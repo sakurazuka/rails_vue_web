@@ -1,0 +1,13 @@
+version: '2'
+services:
+  rails_vue_db:
+    image: postgres
+  rails_vue_web:
+    build: .
+    command: bundle exec rails s -p 3001 -b '0.0.0.0'
+    volumes:
+      - .:/rails_vue_app
+    ports:
+      - "3001:3001"
+    depends_on:
+      - rails_vue_db
